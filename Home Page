@@ -1,0 +1,88 @@
+<?php
+include("db.php");
+?>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Student Management System</h2>
+
+<a href="add.php">Add Student</a>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Course</th>
+
+<th>Action</th>
+
+</tr>
+
+<?php
+
+$result=mysqli_query($conn,
+"SELECT * FROM students");
+
+while($row=mysqli_fetch_assoc($result))
+{
+
+?>
+
+<tr>
+
+<td><?php echo $row['id']; ?></td>
+
+<td><?php echo $row['name']; ?></td>
+
+<td><?php echo $row['email']; ?></td>
+
+<td><?php echo $row['course']; ?></td>
+
+<td>
+
+<a
+class="edit"
+href="edit.php?id=<?php echo $row['id']; ?>">
+Edit
+</a>
+
+<a
+class="delete"
+href="delete.php?id=<?php echo $row['id']; ?>">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+<?php
+}
+?>
+
+</table>
+
+</div>
+
+</body>
+
+</html>
